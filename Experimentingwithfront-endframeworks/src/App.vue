@@ -1,13 +1,17 @@
 <script setup>
 /* To use a Vue component, it can be imported in the script area of the App.vue file like: */
 /* import ComponentName from './components/ComponentName.vue' */
-import Starter from './components/Starter.vue'
+import Heading from './components/Heading.vue'
+import copyright from './components/Copyright.vue'
+import information from './components/Information.vue'
 </script>
 
 <template>
   <h1>Coursera Vue.js Demo</h1>
   <!-- To display a Vue component, the name of the component is treated similar to an HTML tag. -->
-  <Starter />
+   <information/>
+   <Heading/>
+   <copyright/>
 </template>
 
 <style>
