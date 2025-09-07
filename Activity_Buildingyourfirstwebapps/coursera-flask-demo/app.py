@@ -4,13 +4,14 @@ import requests
 app = Flask(__name__)
 
 # Step 2: Replace with your actual API key
-api_key = 'YOUR_API_KEY'
+api_key = 'fe12083e00f64cfcb9a47095dd238c71'
 headers = {'X-Auth-Token': api_key}
 url = "http://api.football-data.org/v4/matches"
 
 # Function to fetch scores (similar to your previous project)
 def fetch_scores():
     """
+    
     Fetch live football match scores from the API.
 
     Returns:
@@ -29,7 +30,8 @@ def fetch_scores():
     except Exception as e:
         return f"Error fetching data: {e}"
 
-# STEP 3: YOUR CODE HERE
+@app.route('/')
+
 def load_index_page():
     """
     Flask route for the main page.
@@ -39,9 +41,9 @@ def load_index_page():
     Returns:
         str: Rendered HTML content of the index page.
     """
-    # STEP 4: YOUR CODE HERE
+    return render_template('index.html')
 
-# STEP 5: YOUR CODE HERE
+@app.route('/scores')
 def load_scores_page():
     """
     Flask route for the scores page.
@@ -53,8 +55,16 @@ def load_scores_page():
     """
     # Initial score fetch
     live_scores = fetch_scores()
+    if isinstance(live_scores, list):
+        return render_template('scores.html',scores=live_scores)
+    else:
+        return render_template('scores.html',error=live_scores)
 
     # STEP 6: YOUR CODE HERE
+    if isinstance(live_scores, list):
+        return render_template('scores.html', scores=live_scores)
+    else:
+        return render_template('scores.html', error=live_scores)
 
 if __name__ == '__main__':
     app.run(debug=True)
